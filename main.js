@@ -7,7 +7,7 @@ import { Color } from 'three';
 import './style.css';
 
 const scene = new THREE.Scene();
-scene.background = new Color('#242b39')
+scene.background = new Color('#121212')
 
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({
@@ -46,7 +46,7 @@ scene.add(particleMesh);
 
 //------------------------ Spheres ---------------------------------//
 
-const sphere = new THREE.Mesh(new THREE.SphereGeometry(.9, 60, 60), new THREE.ShaderMaterial({
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(.9, 64, 64), new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
   uniforms: {
@@ -56,7 +56,7 @@ const sphere = new THREE.Mesh(new THREE.SphereGeometry(.9, 60, 60), new THREE.Sh
   }
 }));
 
-const moon = new THREE.Mesh(new THREE.SphereGeometry(.2, 64, 64), new THREE.ShaderMaterial({
+const moon = new THREE.Mesh(new THREE.SphereGeometry(.3, 64, 64), new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
   uniforms: {
@@ -66,7 +66,7 @@ const moon = new THREE.Mesh(new THREE.SphereGeometry(.2, 64, 64), new THREE.Shad
   }
 }));
 
-const planet1 = new THREE.Mesh(new THREE.SphereGeometry(4, 64, 64), new THREE.ShaderMaterial({
+const planet1 = new THREE.Mesh(new THREE.SphereGeometry(7, 64, 64), new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
   uniforms: {
@@ -76,7 +76,7 @@ const planet1 = new THREE.Mesh(new THREE.SphereGeometry(4, 64, 64), new THREE.Sh
   }
 }));
 
-const planet2 = new THREE.Mesh(new THREE.SphereGeometry(2, 64, 64), new THREE.ShaderMaterial({
+const planet2 = new THREE.Mesh(new THREE.SphereGeometry(1.7, 64, 64), new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
   uniforms: {
@@ -99,10 +99,10 @@ const planet3 = new THREE.Mesh(new THREE.SphereGeometry(7, 64, 64), new THREE.Sh
 //----------------------------------------------------------------------//
 
 //Positions
-moon.position.set(-1.7, .7, 0)
-planet1.position.set(10, 12, -25)
-planet2.position.set(-4, -4, -7)
-planet3.position.set(25, -20, -60)
+moon.position.set(-1.5, .7, 0)
+planet1.position.set(25, 20, -45)
+planet2.position.set(-7, -4, -7)
+planet3.position.set(35, -20, -60)
 
 scene.add(sphere, moon, planet1, planet2, planet3);
 
