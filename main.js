@@ -7,32 +7,32 @@ import { Color } from 'three';
 import './style.css';
 
 const scene = new THREE.Scene();
-scene.background = new Color('#121212')
+scene.background = new Color('#1A2025')
 
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({
-  antialias: true,
-}); 
+const renderer = new THREE.WebGLRenderer({ antialias: true }); 
 
 // Canvas
-const canvas = document.querySelector('canvas.webgl')
+// const canvas = document.querySelector('canvas.webgl');
 
 //---------- Materials ----------//
 
 const particlesGeometry = new THREE.BufferGeometry;
 const particleCount = 20000;
-
 const posArray = new Float32Array(particleCount * 3);
 
-for(let i = 0; i < particleCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 6;
+for(let i = 0; i < particleCount * 3; i++) 
+{
+  posArray[i] = (Math.random() - 0.5) * 6;
 }
+
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
 const particleMaterial = new THREE.PointsMaterial({
     size: .0035,
     blending: THREE.AdditiveBlending,
 });
+
 particleMaterial.color = new THREE.Color(0xffffff);
 
 renderer.setSize(innerWidth, innerHeight);
@@ -99,10 +99,10 @@ const planet3 = new THREE.Mesh(new THREE.SphereGeometry(7, 64, 64), new THREE.Sh
 //----------------------------------------------------------------------//
 
 //Positions
-moon.position.set(-1.5, .7, 0)
-planet1.position.set(25, 20, -45)
-planet2.position.set(-7, -4, -7)
-planet3.position.set(35, -20, -60)
+moon.position.set(-1.5, .7, 0);
+planet1.position.set(65, 20, -75);
+planet2.position.set(-24, -15, -25);
+planet3.position.set(40, -35, -60);
 
 scene.add(sphere, moon, planet1, planet2, planet3);
 
@@ -125,7 +125,7 @@ scene.add(atmosphere);
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
-}
+};
 
 window.addEventListener('resize', () =>
 {
@@ -142,11 +142,11 @@ window.addEventListener('resize', () =>
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
-function animate() {
+function animate() 
+{
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
-
 animate();
 
 //---------------------------------------------------------//
@@ -161,7 +161,8 @@ let targetY = 0;
 const windowHalfX = window.innerWidth / 2;
 const windowHalfY = window.innerHeight / 2;
 
-function onDocumentMouseMove(e) {
+function onDocumentMouseMove(e) 
+{
     mouseX = (e.clientX - windowHalfX);
     mouseY = (e.clientY - windowHalfY);
 }
@@ -183,7 +184,8 @@ const tick = () =>
     planet3.rotation.y = 2 * elapsedTime;
     particleMesh.rotation.y = -.1 * elapsedTime;
 
-    if(mouseX > 0 || mouseX < 0) {
+    if(mouseX > 0 || mouseX < 0) 
+    {
         particleMesh.rotation.y = mouseY * (elapsedTime * 0.00007);
         particleMesh.rotation.x = mouseX * (elapsedTime * 0.00007);
         particleMesh.rotation.z = mouseY * (elapsedTime * 0.00007);
@@ -219,5 +221,4 @@ const tick = () =>
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
-
 tick()
